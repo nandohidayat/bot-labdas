@@ -1,0 +1,22 @@
+{
+  "name": "bot-labdas",
+  "version": "1.0.0",
+  "description": "bot telegram pengingat jadwal asisten laboratorium dasar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nandohidayat/bot-labdas.git"
+  },
+  "author": "Nando Hidayat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nandohidayat/bot-labdas/issues"
+  },
+  "homepage": "https://github.com/nandohidayat/bot-labdas#readme",
+  "dependencies": {
+    "telegraf": "^3.27.1"
+  }
+}
