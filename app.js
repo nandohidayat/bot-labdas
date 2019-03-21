@@ -1,8 +1,9 @@
 const Telegraf = require("telegraf");
-
 require("dotenv").config({ path: "variables.env" });
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN, {
+  username: process.env.BOT_USERNAME
+});
 
 bot.use(async (ctx, next) => {
   const start = new Date();
@@ -14,8 +15,5 @@ bot.use(async (ctx, next) => {
 bot.catch(err => {
   console.log(`Oops ${err}`);
 });
-bot.start(ctx => ctx.reply(42 / 0));
-
-bot.on("text", ctx => ctx.reply("Hello worldAAAA"));
 
 bot.launch();
