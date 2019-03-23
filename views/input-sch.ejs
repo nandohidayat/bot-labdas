@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Input Schedule</title>
+  </head>
+  <body>
+    <form action="" method="post">
+      <label for="day">Day</label>
+      <select name="day" id="day">
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+      </select>
+      <label for="time">Time</label>
+      <select name="time" id="time">
+        <option value="07:00">07:00</option>
+        <option value="08:40">08:40</option>
+        <option value="10:20">10:20</option>
+        <option value="12:30">12:30</option>
+        <option value="14:10">14:10</option>
+        <option value="16:20">16:20</option>
+        <option value="18:30">18:30</option>
+      </select>
+      <label for="lab">Lab</label>
+      <select name="lab" id="lab">
+        <option value="H">H</option>
+        <option value="I">I</option>
+      </select>
+      <label for="assistances">Assistances</label>
+      <select name="assistances[0][assistance]" id="assistances[0]">
+        <% ass.map(as => { %>
+        <option value="<%= as._id %>"><%= as.code %></option>
+        <% }) %>
+      </select>
+      <select name="assistances[1][assistance]" id="assistances[0]">
+        <% ass.map(as => { %>
+        <option value="<%= as._id %>"><%= as.code %></option>
+        <% }) %>
+      </select>
+      <select name="assistances[2][assistance]" id="assistances[0]">
+        <% ass.map(as => { %>
+        <option value="<%= as._id %>"><%= as.code %></option>
+        <% }) %>
+      </select>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
