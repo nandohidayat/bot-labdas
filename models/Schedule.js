@@ -9,10 +9,16 @@ const scheduleSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  assistance: [
+  assistances: [
     {
-      type: mongoose.Schema.ObjectId,
-      ref: "Assistance"
+      assistance: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Assistance"
+      },
+      status: {
+        type: Boolean,
+        default: false
+      }
     }
   ]
 });
