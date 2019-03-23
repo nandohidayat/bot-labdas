@@ -37,7 +37,7 @@ scheduleSchema.statics.getCurrent = function(day, hour, minute) {
       $match: { day, hour, minute }
     },
     {
-      $project: { lab: 1, "assistances.username": 1 }
+      $project: { lab: 1, username: "$assistances.username" }
     }
   ]);
 };
