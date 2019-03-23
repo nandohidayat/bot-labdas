@@ -1,19 +1,21 @@
-const Telegraf = require("telegraf");
+const express = require("express");
+const mongoose = require("mongoose");
+const app = express();
+
 require("dotenv").config({ path: "variables.env" });
 
-const bot = new Telegraf(process.env.BOT_TOKEN, {
-  username: process.env.BOT_USERNAME
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
+mongoose.Promise = global.Promise;
+mongoose.connection.on("error", err => {
+  console.error(`${err.message}`);
 });
 
-bot.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`Respone time ${ms}`);
-});
+require("./models/Assistance");
+require("./models/Schedule");
 
-bot.catch(err => {
-  console.log(`Oops ${err}`);
-});
+require("./bot").launch();
 
-bot.launch();
+app.set("port", process.env.PORT || 7777);
+const server = app.listen(app.get("port"), () => {
+  console.log(`Express running on port ${server.address().port}`);
+});
