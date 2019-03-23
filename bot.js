@@ -1,7 +1,7 @@
 const Telegraf = require("telegraf");
 const schedule = require("node-schedule");
 const mongoose = require("mongoose");
-const Schedule = require("./models/Schedule");
+const Schedule = mongoose.model("Schedule");
 
 const bot = new Telegraf(process.env.BOT_TOKEN, {
   username: process.env.BOT_USERNAME
@@ -18,15 +18,16 @@ bot.catch(err => {
   console.log(`Oops ${err}`);
 });
 
-const second = schedule.scheduleJob("48 0 ? * 0", async () => {
+const jobs = [];
+
+jobs[0] = schedule.scheduleJob("30 6 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const sch = await Schedule.find({ day, hour: 0, minute: 50 });
-  if (sch) {
-    const job1 = bot.telegram.sendMessage(
-      -352077074,
-      `@${sch[0].assistances[0].assistance.username}`
-    );
+  const schedules = await Schedule.find({ day, hour: 0, minute: 50 });
+  if (schedules) {
+    schedules.map(sch => {});
   }
 });
+
+// bot.telegram.leaveChat(-1001206258793);
 
 module.exports = bot;
