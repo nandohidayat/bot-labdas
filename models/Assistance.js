@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 const assistanceSchema = new mongoose.Schema({
   code: {
     type: String,
+    unique: true,
     trim: true,
     uppercase: true
   },

@@ -16,12 +16,12 @@ bot.catch(err => {
   console.log(`Oops ${err}`);
 });
 
-const rule = new schedule.RecurrenceRule();
-rule.hour = 13;
-rule.minute = 54;
+// const rule = new schedule.RecurrenceRule();
+// rule.hour = 13;
+// rule.minute = 54;
 
-const second = schedule.scheduleJob(rule, () => {
-  bot.telegram.sendMessage(-352077074, "@nandohidayat");
-});
+// const second = schedule.scheduleJob(rule, () => {
+//   bot.telegram.sendMessage(-352077074, "@nandohidayat");
+// });
 
 module.exports = bot;
