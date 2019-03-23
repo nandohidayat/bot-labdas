@@ -1,8 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const indexRoute = require("./routes/indexRoute");
+const path = require("path");
+const bodyParser = require("body-parser");
 const errorHandlers = require("./handlers/errorHandler");
 const app = express();
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 require("dotenv").config({ path: "variables.env" });
 
@@ -19,6 +26,8 @@ require("./models/Assistance");
 require("./models/Schedule");
 
 require("./bot").launch();
+
+const indexRoute = require("./routes/indexRoute");
 
 app.use("/", indexRoute);
 app.use(errorHandlers.notFound);
