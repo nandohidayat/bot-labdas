@@ -23,8 +23,27 @@ const scheduleSchema = new mongoose.Schema({
   ]
 });
 
+scheduleSchema.statics.getCurrent = function(day, hour, minute) {
+  return this.aggregate([
+    {
+      $lookup: {
+        from: "assistances",
+        localField: "assistances.assistance",
+        foreignField: "_id",
+        as: "assistances"
+      }
+    },
+    {
+      $match: { day, hour, minute }
+    },
+    {
+      $project: { lab: 1, "assistances.username": 1 }
+    }
+  ]);
+};
+
 function autopopulate(next) {
-  this.populate("assistance");
+  this.populate("assistances.assistance");
   next();
 }
 
