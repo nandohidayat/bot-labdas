@@ -23,8 +23,11 @@ const jobs = [];
 
 jobs[0] = schedule.scheduleJob("30 6 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 7, 0);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 7, 0);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
@@ -39,8 +42,11 @@ jobs[0] = schedule.scheduleJob("30 6 ? * 1-5", async () => {
 
 jobs[1] = schedule.scheduleJob("10 8 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 8, 40);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 8, 40);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
@@ -55,8 +61,11 @@ jobs[1] = schedule.scheduleJob("10 8 ? * 1-5", async () => {
 
 jobs[2] = schedule.scheduleJob("50 9 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 10, 20);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 10, 20);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
@@ -71,8 +80,11 @@ jobs[2] = schedule.scheduleJob("50 9 ? * 1-5", async () => {
 
 jobs[3] = schedule.scheduleJob("0 12 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 12, 30);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 12, 30);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
@@ -87,8 +99,11 @@ jobs[3] = schedule.scheduleJob("0 12 ? * 1-5", async () => {
 
 jobs[4] = schedule.scheduleJob("40 13 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 14, 10);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 14, 10);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
@@ -103,8 +118,11 @@ jobs[4] = schedule.scheduleJob("40 13 ? * 1-5", async () => {
 
 jobs[5] = schedule.scheduleJob("50 15 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 16, 20);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 16, 20);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
@@ -119,8 +137,11 @@ jobs[5] = schedule.scheduleJob("50 15 ? * 1-5", async () => {
 
 jobs[6] = schedule.scheduleJob("0 18 ? * 1-5", async () => {
   const day = new Date().getDay();
-  const [err, schedules] = await Schedule.getCurrent(day, 18, 30);
-  if (err) console.log(err);
+  try {
+    const schedules = await Schedule.getCurrent(day, 18, 30);
+  } catch (e) {
+    console.log(e);
+  }
   if (schedules) {
     schedules.map(sch => {
       bot.telegram.sendMessage(
