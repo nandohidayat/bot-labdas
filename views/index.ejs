@@ -13,7 +13,6 @@
       href="/vendor/fonts/fontawesome/css/fontawesome-all.css"
     />
     <link rel="stylesheet" href="/dist/style.css" />
-    <script src="/javascript/script.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -107,10 +106,10 @@
                 </div>
                 <div class="form-row mb-3">
                   <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <label for="assistances[0][assistance]">Assistance 1</label>
+                    <label for="assistances-0">Assistance 1</label>
                     <select
                       class="form-control"
-                      id="assistances[0][assistance]"
+                      id="assistances-0"
                       name="assistances[0][assistance]"
                     >
                       <option value=""></option>
@@ -120,12 +119,12 @@
                     </select>
                   </div>
                   <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <label for="assistances[1][assistance]"
+                    <label for="assistances-1"
                       >Assistances 2</label
                     >
                     <select
                       class="form-control"
-                      id="assistances[1][assistance]"
+                      id="assistances-1"
                       name="assistances[1][assistance]"
                     >
                       <option value=""></option>
@@ -135,10 +134,10 @@
                     </select>
                   </div>
                   <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <label for="assistances[2][assistance]">Assistance 3</label>
+                    <label for="assistances-2">Assistance 3</label>
                     <select
                       class="form-control"
-                      id="assistances[2][assistance]"
+                      id="assistances-2"
                       name="assistances[2][assistance]"
                     >
                       <option value=""></option>
@@ -148,11 +147,9 @@
                     </select>
                   </div>
                 </div>
-                <input
-                  class="btn btn-primary btn-block mb-5"
-                  type="submit"
-                  value="Add"
-                />
+                <button class="btn btn-primary btn-block mb-5" type="submit">
+                  Add
+                </button>
               </form>
               <ul class="list-group list-group-flush" id="items">
                 <% sch.map(sc => { %>
@@ -172,7 +169,7 @@
                     </p>
                   </div>
                   <div class="btn-group ml-auto">
-                    <button class="btn btn-sm btn-outline-light">Edit</button>
+                    <button class="btn btn-sm btn-outline-light edit-btn">Edit</button>
                     <form
                       action="/schedule/<%= sc._id %>/delete"
                       method="POST"
@@ -226,5 +223,6 @@
     <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="/libs/js/main-js.js"></script>
+    <script src="/dist/bundle.js"></script>
   </body>
 </html>
