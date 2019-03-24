@@ -12,7 +12,7 @@ bot.use(async (ctx, next) => {
   await next();
   const ms = new Date() - start;
   console.log(`Respone time ${ms}`);
-  console.log(ctx.message);
+  // console.log(ctx.message);
 });
 
 bot.catch(err => {
