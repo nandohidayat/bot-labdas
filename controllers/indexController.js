@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Assistance = mongoose.model("Assistance");
 const Schedule = mongoose.model("Schedule");
 
+exports.index = (req, res) => {
+  res.render("index");
+};
+
 exports.inputAss = (req, res) => {
   res.render("input-ass");
 };
