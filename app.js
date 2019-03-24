@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
+const helpers = require("./helpers");
 const errorHandlers = require("./handlers/errorHandler");
 const app = express();
 
@@ -12,11 +13,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  res.locals.h = helpers;
+  next();
+});
+
 require("dotenv").config({ path: "variables.env" });
 
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 mongoose.Promise = global.Promise;
 mongoose.connection.on("error", err => {

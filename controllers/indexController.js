@@ -2,8 +2,16 @@ const mongoose = require("mongoose");
 const Assistance = mongoose.model("Assistance");
 const Schedule = mongoose.model("Schedule");
 
-exports.index = (req, res) => {
-  res.render("index");
+exports.index = async (req, res) => {
+  const assPromise = Assistance.find().sort({ code: 1 });
+  const schPromise = Schedule.find().sort({
+    day: 1,
+    hour: 1,
+    minute: 1,
+    lab: 1
+  });
+  const [ass, sch] = await Promise.all([assPromise, schPromise]);
+  res.render("index", { ass, sch });
 };
 
 exports.inputAss = (req, res) => {
@@ -15,7 +23,6 @@ exports.createAss = async (req, res) => {
     return a.toUpperCase();
   });
   const ass = await new Assistance(req.body).save();
-  res.redirect("back");
 };
 
 exports.inputSch = async (req, res) => {
@@ -27,5 +34,10 @@ exports.createSch = async (req, res) => {
   req.body.hour = req.body.time.split(":")[0];
   req.body.minute = req.body.time.split(":")[1];
   const sch = await new Schedule(req.body).save();
-  res.redirect("back");
+  res.json(sch);
+};
+
+exports.deleteSch = async (req, res) => {
+  const ass = await Schedule.findByIdAndRemove(req.params.id);
+  res.json(ass);
 };

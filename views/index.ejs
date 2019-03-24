@@ -5,13 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Bot Dashboard</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/vendor/fonts/circular-std/style.css" />
+    <link rel="stylesheet" href="/libs/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="/vendor/fonts/fontawesome/css/fontawesome-all.css"
+    />
     <link rel="stylesheet" href="/dist/style.css" />
+    <script src="/javascript/script.js"></script>
   </head>
   <body>
     <div class="wrap">
-      <div class="box">
-        <h1>Bot Dashboard</h1>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="section-block">
+          <h1 class="section-title text-center">Bot Dashboard</h1>
+          <p class="text-center">
+            Disini ntar dikasih keterangan
+          </p>
+        </div>
+        <div class="simple-card">
+          <ul class="nav nav-tabs" id="myTab5" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active border-left-0"
+                id="home-tab-simple"
+                data-toggle="tab"
+                href="#home-simple"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                >Schedule</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="profile-tab-simple"
+                data-toggle="tab"
+                href="#profile-simple"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+                >Assistance</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="contact-tab-simple"
+                data-toggle="tab"
+                href="#contact-simple"
+                role="tab"
+                aria-controls="contact"
+                aria-selected="false"
+                >Wise Word</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent7">
+            <div
+              class="tab-pane fade show active"
+              id="home-simple"
+              role="tabpanel"
+              aria-labelledby="home-tab-simple"
+            >
+              <form class="schedule-form" action="/schedule" method="POST">
+                <div class="form-row mb-2">
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label for="day">Day</label>
+                    <select class="form-control" id="day" name="day">
+                      <option value=""></option>
+                      <option value="1">Monday</option>
+                      <option value="2">Tuesday</option>
+                      <option value="3">Wednesday</option>
+                      <option value="4">Thursday</option>
+                      <option value="5">Friday</option>
+                    </select>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label for="time">Time</label>
+                    <select class="form-control" id="time" name="time">
+                      <option value=""></option>
+                      <option value="07:00">07:00</option>
+                      <option value="08:40">08:40</option>
+                      <option value="10:20">10:20</option>
+                      <option value="12:30">12:30</option>
+                      <option value="14:10">14:10</option>
+                      <option value="16:20">16:20</option>
+                      <option value="18:30">18:30</option>
+                    </select>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label for="lab">Lab</label>
+                    <select class="form-control" id="lab" name="lab">
+                      <option value=""></option>
+                      <option value="H">H</option>
+                      <option value="I">I</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row mb-3">
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label for="assistances[0][assistance]">Assistance 1</label>
+                    <select
+                      class="form-control"
+                      id="assistances[0][assistance]"
+                      name="assistances[0][assistance]"
+                    >
+                      <option value=""></option>
+                      <% ass.map(as => { %>
+                      <option value="<%= as._id %>"><%= as.code %></option>
+                      <% }) %>
+                    </select>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label for="assistances[1][assistance]"
+                      >Assistances 2</label
+                    >
+                    <select
+                      class="form-control"
+                      id="assistances[1][assistance]"
+                      name="assistances[1][assistance]"
+                    >
+                      <option value=""></option>
+                      <% ass.map(as => { %>
+                      <option value="<%= as._id %>"><%= as.code %></option>
+                      <% }) %>
+                    </select>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <label for="assistances[2][assistance]">Assistance 3</label>
+                    <select
+                      class="form-control"
+                      id="assistances[2][assistance]"
+                      name="assistances[2][assistance]"
+                    >
+                      <option value=""></option>
+                      <% ass.map(as => { %>
+                      <option value="<%= as._id %>"><%= as.code %></option>
+                      <% }); %>
+                    </select>
+                  </div>
+                </div>
+                <input
+                  class="btn btn-primary btn-block mb-5"
+                  type="submit"
+                  value="Add"
+                />
+              </form>
+              <ul class="list-group list-group-flush" id="items">
+                <% sch.map(sc => { %>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <h4>
+                      <%= h.dayConverter(sc.day) %> - <%=
+                      String(sc.hour).padStart(2,0) %>: <%=
+                      String(sc.minute).padStart(2,0) %>
+                    </h4>
+                    <p>
+                      Lab <%= sc.lab %> : <%= sc.assistances[0].assistance.code
+                      %> - <%= sc.assistances[1].assistance.code %> - <%=
+                      sc.assistances[2].assistance.code %>
+                    </p>
+                  </div>
+                  <div class="btn-group ml-auto">
+                    <button class="btn btn-sm btn-outline-light">Edit</button>
+                    <form
+                      action="/schedule/<%= sc._id %>/delete"
+                      method="POST"
+                      class="delete-schedule"
+                    >
+                      <button
+                        class="btn btn-sm btn-outline-light"
+                        type="submit"
+                      >
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </form>
+                  </div>
+                </li>
+                <% }); %>
+              </ul>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="profile-simple"
+              role="tabpanel"
+              aria-labelledby="profile-tab-simple"
+            >
+              <p>
+                Nullam et tellus ac ligula condimentum sodales. Aenean tincidunt
+                viverra suscipit. Maecenas id molestie est, a commodo nisi.
+                Quisque fringilla turpis nec elit eleifend vestibulum. Aliquam
+                sed purus in odio ullamcorper congue consectetur in neque.
+                Aenean sem ex, tempor et auctor sed, congue id neque.
+              </p>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="contact-simple"
+              role="tabpanel"
+              aria-labelledby="contact-tab-simple"
+            >
+              <p>
+                Vivamus pellentesque vestibulum lectus vitae auctor. Maecenas eu
+                sodales arcu. Fusce lobortis, libero ac cursus feugiat, nibh ex
+                ultricies tortor, id dictum massa nisl ac nisi. Fusce a eros
+                pellentesque, ultricies urna nec, consectetur dolor. Nam dapibus
+                scelerisque risus, a commodo mi tempus eu.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/libs/js/main-js.js"></script>
   </body>
 </html>
