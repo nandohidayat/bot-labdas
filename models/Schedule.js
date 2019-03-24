@@ -38,6 +38,9 @@ scheduleSchema.statics.getCurrent = function(day, hour, minute) {
     },
     {
       $project: { lab: 1, username: "$assistances.username" }
+    },
+    {
+      $sort: { lab: 1 }
     }
   ]);
 };
