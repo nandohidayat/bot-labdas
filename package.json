@@ -4,7 +4,8 @@
   "description": "bot telegram pengingat jadwal asisten laboratorium dasar",
   "main": "app.js",
   "scripts": {
-    "start": "concurrently \"npm run watch\" \"npm run build\"",
+    "start": "node ./app.js",
+    "dev": "concurrently \"npm run watch\" \"npm run build\"",
     "watch": "nodemon ./app.js",
     "build": "webpack -w --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
