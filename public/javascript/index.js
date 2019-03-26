@@ -1,2 +1,4 @@
 import { $, $$ } from "./modules/bling";
-import schedule from "./modules/schedule";
+import { fillForm } from "./modules/schedule";
+
+$$("a.edit-btn").on("click", fillForm);

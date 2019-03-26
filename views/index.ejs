@@ -18,7 +18,7 @@
     <div class="wrap">
       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-5">
         <div class="section-block">
-          <h1 class="section-title text-center">Bot Dashboard</h1>
+          <h1 class="section-title text-center" id="page-title">Bot Dashboard</h1>
           <p class="text-center">
             Disini ntar dikasih keterangan
           </p>
@@ -119,9 +119,7 @@
                     </select>
                   </div>
                   <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <label for="assistances-1"
-                      >Assistances 2</label
-                    >
+                    <label for="assistances-1">Assistances 2</label>
                     <select
                       class="form-control"
                       id="assistances-1"
@@ -147,7 +145,7 @@
                     </select>
                   </div>
                 </div>
-                <button class="btn btn-primary btn-block mb-5" type="submit">
+                <button id="schedule-submit" class="btn btn-primary btn-block mb-5" type="submit">
                   Add
                 </button>
               </form>
@@ -158,18 +156,34 @@
                 >
                   <div>
                     <h4>
-                      <%= h.dayConverter(sc.day) %> - <%=
-                      String(sc.hour).padStart(2,0) %>: <%=
-                      String(sc.minute).padStart(2,0) %>
+                      <span id="list-day"><%= h.dayConverter(sc.day) %></span> -
+                      <span id="list-time"
+                        ><%= String(sc.hour).padStart(2,0) %>:<%=
+                        String(sc.minute).padStart(2,0) %></span
+                      >
                     </h4>
                     <p>
-                      Lab <%= sc.lab %> : <%= sc.assistances[0].assistance.code
-                      %> - <%= sc.assistances[1].assistance.code %> - <%=
-                      sc.assistances[2].assistance.code %>
+                      Lab <span id="list-lab"><%= sc.lab %></span> :
+                      <span id="list-ass0"
+                        ><%= sc.assistances[0].assistance.code %></span
+                      >
+                      -
+                      <span id="list-ass1"
+                        ><%= sc.assistances[1].assistance.code %></span
+                      >
+                      -
+                      <span id="list-ass2"
+                        ><%= sc.assistances[2].assistance.code %></span
+                      >
                     </p>
                   </div>
                   <div class="btn-group ml-auto">
-                    <button class="btn btn-sm btn-outline-light edit-btn">Edit</button>
+                    <a href="#page-title"
+                      class="btn btn-sm btn-outline-light edit-btn"
+                      id="<%= sc._id %>"
+                    >
+                      Edit
+                  </a>
                     <form
                       action="/schedule/<%= sc._id %>/delete"
                       method="POST"

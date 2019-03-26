@@ -36,3 +36,15 @@ exports.deleteSch = async (req, res) => {
   const ass = await Schedule.findByIdAndRemove(req.params.id);
   res.redirect("back");
 };
+
+exports.getSch = async (req, res) => {
+  const sch = await Schedule.findById(req.params.id);
+  res.json(sch);
+};
+
+exports.updateSch = async (req, res) => {
+  req.body.hour = req.body.time.split(":")[0];
+  req.body.minute = req.body.time.split(":")[1];
+  const sch = await Schedule.findOneAndUpdate({ _id: req.params.id }, req.body);
+  res.redirect("back");
+};

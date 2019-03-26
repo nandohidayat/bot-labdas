@@ -9,7 +9,8 @@ router.get("/assistance", indexController.inputAss);
 router.post("/assistance", catchErrors(indexController.createAss));
 
 router.post("/schedule", catchErrors(indexController.createSch));
-
+router.get("/schedule/:id", catchErrors(indexController.getSch));
+router.post("/schedule/:id", catchErrors(indexController.updateSch));
 router.post("/schedule/:id/delete", catchErrors(indexController.deleteSch));
 
 module.exports = router;
