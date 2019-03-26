@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./app.js",
-    "dev": "concurrently \"npm run watch\" \"npm run build\"",
+    "dev": "concurrently \"npm run watch\" \"npm run assets\"",
     "watch": "nodemon ./app.js",
-    "build": "webpack -w --mode production",
+    "build": "webpack --mode production",
+    "assets": "webpack -w --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
